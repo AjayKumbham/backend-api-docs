@@ -34,7 +34,7 @@ export function Hero() {
               Explore APIs
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/AjayKumbham/evernorth-backend-api"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors"
