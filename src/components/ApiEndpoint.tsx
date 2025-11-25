@@ -1,7 +1,6 @@
-
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { ChevronRight, Code } from "lucide-react";
+import { Code } from "lucide-react";
+import { MethodBadge } from "./MethodBadge";
+import { CodeBlock } from "./CodeBlock";
 
 interface ApiEndpointProps {
   method: "GET" | "POST" | "PUT" | "DELETE";
@@ -18,69 +17,45 @@ export function ApiEndpoint({
   requestBody,
   responseBody,
 }: ApiEndpointProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const methodColors = {
-    GET: "bg-blue-100 text-blue-700",
-    POST: "bg-green-100 text-green-700",
-    PUT: "bg-amber-100 text-amber-700",
-    DELETE: "bg-red-100 text-red-700",
-  };
-
   return (
-    <div className="mb-6 border border-border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300">
-      <div
-        className="flex items-center justify-between p-4 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <div className="flex items-center space-x-3">
-          <span
-            className={cn(
-              "px-3 py-1 rounded-full text-xs font-medium",
-              methodColors[method]
-            )}
-          >
-            {method}
-          </span>
-          <span className="text-sm md:text-base font-mono truncate">{path}</span>
+    <div className="mb-8 rounded-xl overflow-hidden border border-border/50 bg-card hover-glow animate-fade-in">
+      {/* Endpoint Header */}
+      <div className="p-6 border-b border-border/50 bg-gradient-to-r from-card to-muted/20">
+        <div className="flex items-center gap-3 mb-3">
+          <MethodBadge method={method} />
+          <code className="text-base md:text-lg font-semibold text-foreground font-mono">
+            {path}
+          </code>
         </div>
-        <ChevronRight
-          className={cn(
-            "h-5 w-5 text-muted-foreground transition-transform",
-            isOpen && "transform rotate-90"
-          )}
-        />
+        <p className="text-muted-foreground leading-relaxed">{description}</p>
       </div>
-      
-      {isOpen && (
-        <div className="border-t border-border p-4 animate-slide-in">
-          <p className="text-muted-foreground mb-4">{description}</p>
-          
-          {requestBody && (
-            <div className="mb-4">
-              <div className="flex items-center mb-2">
-                <Code className="mr-2 h-4 w-4 text-muted-foreground" />
-                <h4 className="text-sm font-medium">Request Body</h4>
-              </div>
-              <pre className="bg-secondary p-3 rounded-md overflow-x-auto text-xs md:text-sm font-mono">
-                {requestBody}
-              </pre>
+
+      {/* Endpoint Body - Always Visible */}
+      <div className="p-6 space-y-6">
+        {requestBody && (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Code className="h-4 w-4 text-primary" />
+              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                Request Body
+              </h4>
             </div>
-          )}
-          
-          {responseBody && (
-            <div>
-              <div className="flex items-center mb-2">
-                <Code className="mr-2 h-4 w-4 text-muted-foreground" />
-                <h4 className="text-sm font-medium">Response</h4>
-              </div>
-              <pre className="bg-secondary p-3 rounded-md overflow-x-auto text-xs md:text-sm font-mono">
-                {responseBody}
-              </pre>
+            <CodeBlock code={requestBody} language="json" />
+          </div>
+        )}
+
+        {responseBody && (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Code className="h-4 w-4 text-success" />
+              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                Response
+              </h4>
             </div>
-          )}
-        </div>
-      )}
+            <CodeBlock code={responseBody} language="json" />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

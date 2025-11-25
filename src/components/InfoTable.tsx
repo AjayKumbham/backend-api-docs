@@ -1,4 +1,3 @@
-
 interface TableRowProps {
   parameter: string;
   type: string;
@@ -13,29 +12,56 @@ interface InfoTableProps {
 
 export function InfoTable({ title, rows }: InfoTableProps) {
   return (
-    <div className="mb-8 overflow-hidden">
-      <h3 className="text-lg font-medium mb-3">{title}</h3>
+    <div className="mb-8 overflow-hidden rounded-xl border border-border/50 bg-card">
+      <h3 className="text-lg font-semibold px-6 py-4 bg-gradient-to-r from-card to-muted/20 border-b border-border/50">
+        {title}
+      </h3>
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-secondary text-secondary-foreground">
-              <th className="px-4 py-2 text-left font-medium text-sm border-b">Parameter</th>
-              <th className="px-4 py-2 text-left font-medium text-sm border-b">Type</th>
-              <th className="px-4 py-2 text-left font-medium text-sm border-b">Required</th>
-              <th className="px-4 py-2 text-left font-medium text-sm border-b">Description</th>
+        <table className="w-full">
+          <thead className="sticky top-0 bg-muted/50 backdrop-blur-sm">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Parameter
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Type
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Required
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Description
+              </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-border/30">
             {rows.map((row, index) => (
-              <tr key={index} className="hover:bg-muted/50">
-                <td className="px-4 py-2 text-sm font-mono border-b border-border/50">{row.parameter}</td>
-                <td className="px-4 py-2 text-sm border-b border-border/50">{row.type}</td>
-                <td className="px-4 py-2 text-sm border-b border-border/50">
-                  <span className={row.required ? "text-green-600" : "text-muted-foreground"}>
-                    {row.required ? "Yes" : "No"}
-                  </span>
+              <tr
+                key={index}
+                className="hover:bg-muted/30 transition-colors"
+              >
+                <td className="px-6 py-4 text-sm font-mono font-medium text-primary">
+                  {row.parameter}
                 </td>
-                <td className="px-4 py-2 text-sm border-b border-border/50">{row.description}</td>
+                <td className="px-6 py-4 text-sm text-muted-foreground">
+                  <code className="px-2 py-1 rounded bg-muted/50 text-xs">
+                    {row.type}
+                  </code>
+                </td>
+                <td className="px-6 py-4 text-sm">
+                  {row.required ? (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success">
+                      Yes
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-muted/50 text-muted-foreground">
+                      No
+                    </span>
+                  )}
+                </td>
+                <td className="px-6 py-4 text-sm text-foreground/90">
+                  {row.description}
+                </td>
               </tr>
             ))}
           </tbody>
