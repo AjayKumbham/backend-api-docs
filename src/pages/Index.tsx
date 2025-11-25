@@ -8,11 +8,11 @@ import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex-1 lg:ml-72">
         <Hero />
-        
+
         {/* Authentication Section */}
         <ApiSection
           id="authentication"
@@ -48,7 +48,7 @@ const Index = () => {
               }
             ]}
           />
-          
+
           <h3 className="text-xl font-medium mb-4">Sign-Up Process (2-Step)</h3>
           <p className="text-muted-foreground mb-6">
             The sign-up process consists of two steps:
@@ -57,7 +57,7 @@ const Index = () => {
             <li>User Registration: The user submits their details to initiate the registration process.</li>
             <li>Email Verification: The user must verify their email using an OTP. Only after successful verification are the user details stored in the database, and a JWT token is issued.</li>
           </ol>
-          
+
           <h4 className="text-lg font-medium mb-4">1. User Registration</h4>
           <ApiEndpoint
             method="POST"
@@ -71,7 +71,7 @@ const Index = () => {
 }`}
             responseBody={`Registration initiated. Please verify your email with the OTP sent.`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">2. Email Verification</h4>
           <ApiEndpoint
             method="POST"
@@ -85,7 +85,7 @@ const Index = () => {
   "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKOTAwMSIsImlhdCI6MTczODQ3MzcwNiwiZXhwIjoxNzM4NTYwMTA2fQ.OLYEJtT8lXLiqAzxmNfBjQ4m7Tr3P289LcusvLjOt-I"
 }`}
           />
-          
+
           <h3 className="text-xl font-medium mt-8 mb-4">Login Process (2-Step)</h3>
           <p className="text-muted-foreground mb-6">
             The login process consists of two steps:
@@ -94,7 +94,7 @@ const Index = () => {
             <li>Send OTP for Login: The user requests an OTP to be sent to their registered email.</li>
             <li>Verify OTP and Retrieve Token: The user enters the OTP to verify their identity and receive a JWT token for authentication.</li>
           </ol>
-          
+
           <h4 className="text-lg font-medium mb-4">3. Send OTP for Login</h4>
           <ApiEndpoint
             method="POST"
@@ -105,7 +105,7 @@ const Index = () => {
 }`}
             responseBody={`OTP sent successfully`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">4. Verify OTP for Login</h4>
           <ApiEndpoint
             method="POST"
@@ -119,7 +119,7 @@ const Index = () => {
   "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKOTAwMSIsImlhdCI6MTczODQyMDY3OCwiZXhwIjoxNzM4NTA3MDc4fQ.YwEjcQuBGJpl-DshR1-ffM5iiVcqu6Il_cfchuiT_Ww"
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">5. Logout User</h4>
           <ApiEndpoint
             method="POST"
@@ -127,7 +127,7 @@ const Index = () => {
             description="Invalidate the user's authentication token to log them out. The token is added to a blacklist and becomes unusable for any further API requests."
             responseBody={`200 OK`}
           />
-          
+
           <div className="bg-blue-50 p-4 rounded-md mt-6">
             <h4 className="text-sm font-medium text-blue-700 mb-2">Notes</h4>
             <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
@@ -138,7 +138,7 @@ const Index = () => {
             </ul>
           </div>
         </ApiSection>
-        
+
         {/* Profile APIs Section */}
         <ApiSection
           id="profile"
@@ -154,9 +154,9 @@ const Index = () => {
               Authorization: Bearer &lt;token&gt;
             </pre>
           </div>
-          
+
           <h3 className="text-xl font-medium mb-4">Endpoints</h3>
-          
+
           <h4 className="text-lg font-medium mb-4">1. Get Profile Data</h4>
           <ApiEndpoint
             method="GET"
@@ -171,7 +171,7 @@ const Index = () => {
   "createdAt": "2025-02-01T20:03:25.559487"
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">2. Update Profile Data</h4>
           <ApiEndpoint
             method="PUT"
@@ -191,7 +191,7 @@ const Index = () => {
   "createdAt": "2025-02-06T21:49:51.768617"
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">3. Email Update (Two-Step Process)</h4>
           <h5 className="text-base font-medium mb-2">Step 1: Request Email Verification</h5>
           <ApiEndpoint
@@ -203,7 +203,7 @@ const Index = () => {
 }`}
             responseBody={`Verification email sent successfully`}
           />
-          
+
           <h5 className="text-base font-medium mb-2">Step 2: Verify Email with OTP</h5>
           <ApiEndpoint
             method="PUT"
@@ -223,7 +223,7 @@ const Index = () => {
 }`}
           />
         </ApiSection>
-        
+
         {/* Payment APIs Section */}
         <ApiSection
           id="payment"
@@ -239,9 +239,9 @@ const Index = () => {
               Authorization: Bearer &lt;token&gt;
             </pre>
           </div>
-          
+
           <h3 className="text-xl font-medium mb-4">Endpoints</h3>
-          
+
           <h4 className="text-lg font-medium mb-4">1. Retrieve All Payment Methods</h4>
           <ApiEndpoint
             method="GET"
@@ -294,9 +294,9 @@ const Index = () => {
   }
 ]`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">2. Add a New Payment Method</h4>
-          
+
           <h5 className="text-base font-medium mb-2">Adding a Credit Card</h5>
           <ApiEndpoint
             method="POST"
@@ -321,7 +321,7 @@ const Index = () => {
   "ifscCode": null
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">3. Update a Payment Method</h4>
           <ApiEndpoint
             method="PUT"
@@ -343,7 +343,7 @@ const Index = () => {
   "ifscCode": null
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">4. Delete a Payment Method</h4>
           <ApiEndpoint
             method="DELETE"
@@ -351,7 +351,7 @@ const Index = () => {
             description="Deletes a saved payment method based on its type."
             responseBody={`200 OK`}
           />
-          
+
           <div className="bg-blue-50 p-4 rounded-md mt-6">
             <h4 className="text-sm font-medium text-blue-700 mb-2">Notes</h4>
             <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
@@ -362,7 +362,7 @@ const Index = () => {
             </ul>
           </div>
         </ApiSection>
-        
+
         {/* Address APIs Section */}
         <ApiSection
           id="address"
@@ -378,7 +378,7 @@ const Index = () => {
               Authorization: Bearer &lt;token&gt;
             </pre>
           </div>
-          
+
           <InfoTable
             title="Request Parameters"
             rows={[
@@ -426,9 +426,9 @@ const Index = () => {
               }
             ]}
           />
-          
+
           <h3 className="text-xl font-medium mb-4">Endpoints</h3>
-          
+
           <h4 className="text-lg font-medium mb-4">1. Get All Addresses</h4>
           <ApiEndpoint
             method="GET"
@@ -446,7 +446,7 @@ const Index = () => {
   }
 ]`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">2. Add a New Address</h4>
           <ApiEndpoint
             method="POST"
@@ -471,7 +471,7 @@ const Index = () => {
   "landmark": "Near Central Park" 
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">3. Update an Address</h4>
           <ApiEndpoint
             method="PUT"
@@ -491,7 +491,7 @@ const Index = () => {
   "landmark": "Near Central Vista"
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">4. Delete an Address</h4>
           <ApiEndpoint
             method="DELETE"
@@ -500,7 +500,7 @@ const Index = () => {
             responseBody={`200 OK`}
           />
         </ApiSection>
-        
+
         {/* Health Conditions API Section */}
         <ApiSection
           id="health"
@@ -516,7 +516,7 @@ const Index = () => {
               Authorization: Bearer &lt;token&gt;
             </pre>
           </div>
-          
+
           <InfoTable
             title="Request Parameters"
             rows={[
@@ -540,9 +540,9 @@ const Index = () => {
               }
             ]}
           />
-          
+
           <h3 className="text-xl font-medium mb-4">Endpoints</h3>
-          
+
           <h4 className="text-lg font-medium mb-4">1. Get All Health Records</h4>
           <ApiEndpoint
             method="GET"
@@ -556,7 +556,7 @@ const Index = () => {
   }
 ]`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">2. Add a New Health Record</h4>
           <ApiEndpoint
             method="POST"
@@ -572,7 +572,7 @@ const Index = () => {
   "description": "Diagnosed in 2020, under medication"
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">3. Update a Health Record</h4>
           <ApiEndpoint
             method="PUT"
@@ -588,7 +588,7 @@ const Index = () => {
   "description": "Type 1 diabetes with regular medication"
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">4. Delete a Health Record</h4>
           <ApiEndpoint
             method="DELETE"
@@ -597,7 +597,7 @@ const Index = () => {
             responseBody={`200 OK`}
           />
         </ApiSection>
-        
+
         {/* Allergy Records APIs Section */}
         <ApiSection
           id="allergy"
@@ -613,7 +613,7 @@ const Index = () => {
               Authorization: Bearer &lt;token&gt;
             </pre>
           </div>
-          
+
           <InfoTable
             title="Request Parameters"
             rows={[
@@ -637,9 +637,9 @@ const Index = () => {
               }
             ]}
           />
-          
+
           <h3 className="text-xl font-medium mb-4">Endpoints</h3>
-          
+
           <h4 className="text-lg font-medium mb-4">1. Get All Allergy Records</h4>
           <ApiEndpoint
             method="GET"
@@ -653,7 +653,7 @@ const Index = () => {
   }
 ]`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">2. Add a New Allergy Record</h4>
           <ApiEndpoint
             method="POST"
@@ -669,7 +669,7 @@ const Index = () => {
   "description": "Severe allergic reaction, carries EpiPen"
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">3. Update an Allergy Record</h4>
           <ApiEndpoint
             method="PUT"
@@ -684,7 +684,7 @@ const Index = () => {
   "description": "Severe allergic reactions, carries EpiPen"
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">4. Delete an Allergy Record</h4>
           <ApiEndpoint
             method="DELETE"
@@ -693,7 +693,7 @@ const Index = () => {
             responseBody={`200 OK`}
           />
         </ApiSection>
-        
+
         {/* Dependents APIs Section */}
         <ApiSection
           id="dependents"
@@ -709,7 +709,7 @@ const Index = () => {
               Authorization: Bearer &lt;token&gt;
             </pre>
           </div>
-          
+
           <InfoTable
             title="Request Parameters"
             rows={[
@@ -751,9 +751,9 @@ const Index = () => {
               }
             ]}
           />
-          
+
           <h3 className="text-xl font-medium mb-4">Endpoints</h3>
-          
+
           <h4 className="text-lg font-medium mb-4">1. Get All Dependents</h4>
           <ApiEndpoint
             method="GET"
@@ -770,7 +770,7 @@ const Index = () => {
   }
 ]`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">2. Add a New Dependent</h4>
           <ApiEndpoint
             method="POST"
@@ -793,7 +793,7 @@ const Index = () => {
   "emergencySosContact": true
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">3. Update a Dependent</h4>
           <ApiEndpoint
             method="PUT"
@@ -811,7 +811,7 @@ const Index = () => {
   "emergencySosContact": true
 }`}
           />
-          
+
           <h4 className="text-lg font-medium mb-4">4. Delete a Dependent</h4>
           <ApiEndpoint
             method="DELETE"
@@ -819,7 +819,7 @@ const Index = () => {
             description="Deletes a dependent associated with the given fullName."
             responseBody={`200 OK`}
           />
-          
+
           <div className="bg-blue-50 p-4 rounded-md mt-6">
             <h4 className="text-sm font-medium text-blue-700 mb-2">Notes</h4>
             <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
@@ -829,8 +829,8 @@ const Index = () => {
             </ul>
           </div>
         </ApiSection>
+        <Footer />
       </main>
-      <Footer />
     </div>
   );
 };
