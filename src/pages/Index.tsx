@@ -10,7 +10,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex">
       <Navigation />
-      <main className="flex-1 lg:ml-72">
+      <main className="flex-1 lg:ml-72 sm:ml-64">
         <Hero />
 
         {/* Authentication Section */}
@@ -49,16 +49,16 @@ const Index = () => {
             ]}
           />
 
-          <h3 className="text-xl font-medium mb-4">Sign-Up Process (2-Step)</h3>
-          <p className="text-muted-foreground mb-6">
+          <h3 className="text-lg sm:text-xl font-medium mb-3 sm:mb-4">Sign-Up Process (2-Step)</h3>
+          <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
             The sign-up process consists of two steps:
           </p>
-          <ol className="list-decimal list-inside space-y-2 mb-6 text-muted-foreground ml-4">
+          <ol className="list-decimal list-inside space-y-2 mb-4 sm:mb-6 text-sm sm:text-base text-muted-foreground ml-4">
             <li>User Registration: The user submits their details to initiate the registration process.</li>
             <li>Email Verification: The user must verify their email using an OTP. Only after successful verification are the user details stored in the database, and a JWT token is issued.</li>
           </ol>
 
-          <h4 className="text-lg font-medium mb-4">1. User Registration</h4>
+          <h4 className="text-base sm:text-lg font-medium mb-3 sm:mb-4">1. User Registration</h4>
           <ApiEndpoint
             method="POST"
             path="/api/auth/register"
@@ -128,9 +128,9 @@ const Index = () => {
             responseBody={`200 OK`}
           />
 
-          <div className="bg-blue-50 p-4 rounded-md mt-6">
-            <h4 className="text-sm font-medium text-blue-700 mb-2">Notes</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
+          <div className="bg-muted/30 p-3 sm:p-4 rounded-lg mt-4 sm:mt-6 border border-border">
+            <h4 className="text-xs sm:text-sm font-semibold text-foreground mb-2">Notes</h4>
+            <ul className="list-disc list-inside space-y-1 text-xs sm:text-sm text-muted-foreground">
               <li>The token returned is a JWT token and is valid for exactly 24 hours (1 day).</li>
               <li>For sign-up: OTP expires in 5 minutes.</li>
               <li>For login: OTP expires in 1 minute.</li>
@@ -352,9 +352,9 @@ const Index = () => {
             responseBody={`200 OK`}
           />
 
-          <div className="bg-blue-50 p-4 rounded-md mt-6">
-            <h4 className="text-sm font-medium text-blue-700 mb-2">Notes</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
+          <div className="bg-muted/30 p-3 sm:p-4 rounded-lg mt-4 sm:mt-6 border border-border">
+            <h4 className="text-xs sm:text-sm font-semibold text-foreground mb-2">Notes</h4>
+            <ul className="list-disc list-inside space-y-1 text-xs sm:text-sm text-muted-foreground">
               <li>Each user can store one payment method per type.</li>
               <li>POST and PUT requests must only include applicable fields; missing fields will be null in the response.</li>
               <li>Masked details (card numbers, bank accounts) ensure security.</li>
@@ -820,9 +820,9 @@ const Index = () => {
             responseBody={`200 OK`}
           />
 
-          <div className="bg-blue-50 p-4 rounded-md mt-6">
-            <h4 className="text-sm font-medium text-blue-700 mb-2">Notes</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
+          <div className="bg-muted/30 p-3 sm:p-4 rounded-lg mt-4 sm:mt-6 border border-border">
+            <h4 className="text-xs sm:text-sm font-semibold text-foreground mb-2">Notes</h4>
+            <ul className="list-disc list-inside space-y-1 text-xs sm:text-sm text-muted-foreground">
               <li>All requests require authentication using a Bearer Token.</li>
               <li>For updating a dependent, only include fields that need to be changed.</li>
               <li>Spaces in fullName should be replaced with %20 in the request URL to ensure proper encoding.</li>

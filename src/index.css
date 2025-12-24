@@ -133,6 +133,7 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   /* Typography refinements */
@@ -165,7 +166,12 @@
   /* Smooth transitions */
   a,
   button {
-    @apply transition-all duration-300;
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  * {
+    max-width: 100%;
   }
 
   /* Custom Scrollbar */
@@ -256,12 +262,14 @@
 
   /* Hover Glow Effect */
   .hover-glow {
-    @apply transition-all duration-300;
+    @apply transition-all duration-300 ease-in-out;
   }
 
-  .hover-glow:hover {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
-    transform: translateY(-2px);
+  @media (hover: hover) {
+    .hover-glow:hover {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+      transform: translateY(-2px);
+    }
   }
 
   /* Section Divider */
@@ -354,5 +362,28 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Touch-friendly tap targets */
+  @media (max-width: 768px) {
+
+    button,
+    a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
